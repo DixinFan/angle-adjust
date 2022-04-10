@@ -24,6 +24,15 @@ def query_config_params():
     motor_flag = config.getboolean('motor', 'flag')
     config_dict['motor_flag'] = motor_flag
 
+    motor_bias = config.getint('motor', 'bias')
+    config_dict['motor_bias'] = motor_bias
+
+    sleep_before = config.getfloat('motor', 'sleep_before')
+    config_dict['sleep_before'] = sleep_before
+
+    sleep_after = config.getfloat('motor', 'sleep_after')
+    config_dict['sleep_after'] = sleep_after
+
     # detection params
     distance_min = config.getfloat('detection_params', 'distance_min')
     config_dict['distance_min'] = distance_min
@@ -37,11 +46,11 @@ def query_config_params():
     remove_y_edge = config.getfloat('detection_params', 'remove_y_edge')
     config_dict['remove_y_edge'] = remove_y_edge
 
-    height_frames = config.getint('detection_params', 'height_frames')
-    config_dict['height_frames'] = height_frames
-
     height_bias = config.getfloat('detection_params', 'height_bias')
     config_dict['height_bias'] = height_bias
+
+    delay = config.getfloat('detection_params', 'delay')
+    config_dict['delay'] = delay
 
     # height_to_journey
     height_to_journey = config.get('height_to_journey', 'dictionary')

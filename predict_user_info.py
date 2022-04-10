@@ -2,9 +2,6 @@ from read_config import *
 config_dict = query_config_params()
 height_bias = config_dict['height_bias']
 
-height_frames = config_dict['height_frames']
-height_amount = height_frames
-
 
 def z_score_normalize(data, dim):
     mean, std = 0, 0
@@ -45,12 +42,3 @@ def predict_distance(x, y):
     p03 = 0.849
     distance = p00 + p10 * x + p01 * y + p20 * x ** 2 + p11 * x * y + p02 * y ** 2 + p21 * x ** 2 * y + p12 * x * y ** 2 + p03 * y ** 3
     return distance
-
-
-def caculate_stable_height(height_list):
-    # height_list.sort()
-    # # # height_list = height_list[int(height_amount / 3): int(height_amount / 3) * 2]
-    # height_list.sort()
-    # height_list = height_list[1: 7]
-    stable_height = sum(height_list) / len(height_list)
-    return stable_height
