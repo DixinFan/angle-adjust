@@ -19,12 +19,16 @@ distance_min = config_dict['distance_min']
 distance_max = config_dict['distance_max']
 
 delay = config_dict['delay']
+init_journey = config_dict['init_journey']
 
 cap.set(3, 1920)
 cap.set(4, 1080)
 
 
 if __name__ == "__main__":
+    print('init_journey: ' + str(init_journey))
+    push_motor(init_journey)
+
     height = 0
     is_new_user = False
 
@@ -55,16 +59,20 @@ if __name__ == "__main__":
             if distance_max > distance > distance_min:
 
                 if height == 0:
+                    print('检测到新用户进入指定距离范围')
                     height = predict_height(x, y)
                     is_new_user = True
 
+                print('用户正在稳定使用自助机，不进行电机调节')
                 info = log_user_info(distance, height)
                 print(info)
                 # draw_user_info(img, info)
                 # draw_face_rect(img, rect)
             else:
+                print('用户不在指定距离范围')
                 height = 0
         else:
+            print('未检测到用户')
             height = 0
 
         # cv2.namedWindow('img', cv2.WINDOW_NORMAL)
@@ -73,6 +81,7 @@ if __name__ == "__main__":
 
         if motor_flag and is_new_user:
             journey = caculate_journey(height)
+            print('为新用户进行一次电机调节')
             print('height: ' + str(height) + '; journey: ' + str(journey))
             push_motor(journey)
             is_new_user = False

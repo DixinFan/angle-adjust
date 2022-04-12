@@ -33,6 +33,9 @@ def query_config_params():
     sleep_after = config.getfloat('motor', 'sleep_after')
     config_dict['sleep_after'] = sleep_after
 
+    init_journey = config.getint('motor', 'init_journey')
+    config_dict['init_journey'] = init_journey
+
     # detection params
     distance_min = config.getfloat('detection_params', 'distance_min')
     config_dict['distance_min'] = distance_min
@@ -57,6 +60,3 @@ def query_config_params():
     config_dict['height_to_journey'] = json.loads(height_to_journey)
 
     return config_dict
-
-
-
