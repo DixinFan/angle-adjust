@@ -14,10 +14,15 @@ sleep_after = config_dict['sleep_after']
 
 def push_motor(journey):
     msg = [0xA5, 0x5A, 0x01, 0x06, 0x01, journey, journey+8, 0x5A, 0xA5]
-    ser = serial.Serial(portx, bps, timeout=timex)
-    time.sleep(sleep_before)
-    ser.write(msg)
-    ser.close()
+    try:
+        ser = serial.Serial(portx, bps, timeout=timex)
+        time.sleep(sleep_before)
+        ser.write(msg)
+        ser.close()
+    except:
+        print('com通信口被占用，本次电机调节失败')
+    else:
+        print('com口通信成功，本次电机调节成功，等待电机执行完毕' + str(sleep_after) + '秒')
     time.sleep(sleep_after)
 
 

@@ -55,6 +55,9 @@ def query_config_params():
     delay = config.getfloat('detection_params', 'delay')
     config_dict['delay'] = delay
 
+    height_frames = config.getint('detection_params', 'height_frames')
+    config_dict['height_frames'] = height_frames
+
     # height_to_journey
     height_to_journey = config.get('height_to_journey', 'dictionary')
     config_dict['height_to_journey'] = json.loads(height_to_journey)
